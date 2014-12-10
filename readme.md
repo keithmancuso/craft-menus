@@ -7,6 +7,10 @@ You add menus in the plugin settings and then you can add "nodes" to that menu f
 
 One the node is added it can be nested using the standard element sturcures interface.
 
+**NOTE: this is a very early release much more is coming**
+
+![](https://raw.githubusercontent.com/familiar-studio/craft-menus/master/screenshots/example.png)
+
 Templating
 -------
 
