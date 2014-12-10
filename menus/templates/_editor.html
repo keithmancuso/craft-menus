@@ -1,0 +1,36 @@
+{% import "_includes/forms" as forms %}
+
+{% set menu = element.getMenu() %}
+
+
+{{ forms.textField({
+  label: "Name"|t,
+  id: 'title',
+  name: 'title',
+  value: element.title,
+  errors: element.getErrors('title'),
+  first: true,
+  autofocus: true,
+  required: true
+}) }}
+
+{{ forms.elementSelectField({
+  label: "Linked Entry"|t,
+  id: 'linkedEntryId',
+  name: 'linkedEntryId',
+  elementType: selectElement,
+  addButtonLabel: "Choose an Entry"|t,
+  elements: linkedElements,
+  limit: 1
+}) }}
+
+{{ forms.textField({
+  label: "Custom Url"|t,
+  id: 'customUrl',
+  name: 'customUrl',
+  value: element.customUrl,
+  errors: element.getErrors('customUrl'),
+  first: true,
+  autofocus: true,
+  required: false
+}) }}

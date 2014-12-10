@@ -1,0 +1,113 @@
+{% extends "_layouts/cp" %}
+{% import "_includes/forms" as forms %}
+
+{% set menuHandle = menu.handle %}
+
+
+{% block main %}
+<form id="node-form" method="post" accept-charset="UTF-8" data-saveshortcut="1" data-saveshortcut-redirect="{{ continueEditingUrl }}">
+  {{ getCsrfInput() }}
+
+  <input type="hidden" name="action" value="menus/nodes/saveNode">
+  <input type="hidden" name="redirect" value="menus">
+  <input type="hidden" name="menuId" value="{{ menu.id }}">
+  {% if node.id %}<input type="hidden" name="nodeId" value="{{ node.id }}">{% endif %}
+  {% if craft.isLocalized() %}<input type="hidden" name="locale" value="{{ node.locale }}">{% endif %}
+
+  <div class="grid first">
+    <div class="item" data-position="left" data-min-colspan="2" data-max-colspan="3">
+      <div id="fields" class="pane">
+        {{ forms.textField({
+          label: "Name"|t,
+          id: 'title',
+          name: 'title',
+          value: node.title,
+          errors: node.getErrors('title'),
+          first: true,
+          autofocus: true,
+          required: true
+        }) }}
+
+        {{ forms.elementSelectField({
+          label: "Linked Entry"|t,
+          id: 'linkedEntryId',
+          name: 'linkedEntryId',
+          elementType: selectElement,
+          addButtonLabel: "Choose an Entry"|t,
+          elements: linkedElements,
+          limit: 1
+        }) }}
+
+        {{ forms.textField({
+          label: "Custom Url"|t,
+          id: 'customUrl',
+          name: 'customUrl',
+          value: node.customUrl,
+          errors: node.getErrors('customUrl'),
+          first: true,
+          autofocus: true,
+          required: false
+        }) }}
+      </div>
+    </div> <!--/item-->
+
+    <div class="item" data-position="right" data-colspan="1">
+
+      <div id="settings" class="pane">
+
+        {% if parentOptionCriteria is defined %}
+          {{ forms.elementSelectField({
+            label: "Parent Node"|t,
+            id: 'parentId',
+            name: 'parentId',
+            elementType: elementType,
+            addButtonLabel: "Choose"|t,
+            sources: ['menu:'~menu.id],
+            criteria: parentOptionCriteria,
+            limit: 1,
+            elements: (parent is defined and parent ? [parent])
+          }) }}
+        {% endif %}
+
+        {% set statusInput %}
+        <div class="left">
+          {{ forms.lightswitch({
+            id: 'enabled',
+            name: 'enabled',
+            on: node.enabled
+          }) }}
+        </div>
+
+        <div class="right">
+          <input type="button" class="btn small formsubmit" value="{{ 'Delete'|t }}" data-action="categories/deleteCategory"
+          data-confirm="{{ 'Are you sure you want to delete this node?'|t }}"
+          data-redirect="categories">
+        </div>
+        {% endset %}
+
+        {{ forms.field({
+          label: "Status"|t,
+          id: 'enabled'
+        }, statusInput) }}
+
+      </div>
+
+      <div class="buttons">
+        <div class="btngroup submit first">
+          <input type="submit" class="btn submit" value="{{ 'Save'|t }}">
+
+          <div class="btn submit menubtn"></div>
+          <div class="menu">
+            <ul>
+              <li><a class="formsubmit" data-redirect="{{ continueEditingUrl }}">{{ "Save and continue editing"|t }}</a></li>
+              <li><a class="formsubmit" data-redirect="menus/{{ menuHandle }}/new">{{ "Save and add another"|t }}</a></li>
+            </ul>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}

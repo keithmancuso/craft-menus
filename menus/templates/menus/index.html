@@ -1,0 +1,52 @@
+{% extends "_layouts/cp" %}
+{% set title = "Menus"|t %}
+
+{% set tabs = {
+  nodes:    { label: "Nodes"|t, url: url('menus') },
+  menus: { label: "Menus"|t, url: url('menus/settings') }
+} %}
+
+
+{% set selectedTab = 'menus' %}
+
+
+{% set content %}
+<div id="nomenus"{% if menus %} class="hidden"{% endif %}>
+  <p>{{ "No menus exist yet."|t }}</p>
+</div>
+
+{% if menus|length %}
+<table id="menus" class="data fullwidth collapsible">
+  <thead>
+    <th scope="col">{{ "Name"|t }}</th>
+    <th scope="col">{{ "Handle"|t }}</th>
+    <td class="thin"></td>
+  </thead>
+  <tbody>
+    {% for menu in menus %}
+    <tr data-id="{{ menu.id }}" data-name="{{ menu.name|t }}">
+      <th scope="row" data-title="{{ 'Name'|t }}"><a href="{{ url('menus/menu/' ~ menu.id) }}">{{ menu.name|t }}</a></th>
+      <td data-title="{{ 'Handle'|t }}"><code>{{ menu.handle }}</code></td>
+      <td class="thin"><a class="delete icon" title="{{ 'Delete'|t }}" role="button"></a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+<div id="newmenucontainer" class="buttons">
+  <a href="{{ url('menus/menu/new') }}" class="btn submit add icon">{{ "New menu"|t }}</a>
+</div>
+{% endset %}
+
+
+{% set js %}
+var adminTable = new Craft.AdminTable({
+  tableSelector: '#menus',
+  noObjectsSelector: '#nomenus',
+  newObjectBtnSelector: '#newmenucontainer',
+  deleteAction: 'events/menus/deleteCalendar',
+  confirmDeleteMessage: '{{ "Are you sure you want to delete “{name}” and all its events?"|t }}'
+});
+{% endset %}
+{% includeJs js %}

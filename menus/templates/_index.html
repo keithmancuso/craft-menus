@@ -1,0 +1,31 @@
+{% extends "_layouts/elementindex" %}
+{% set title = "Menus"|t %}
+{% set showStatusMenu = false %}
+
+{% set elementType = 'Menus_Node' %}
+
+
+
+{% block sidebar %}
+
+  {% if menus|length %}
+    <div class="buttons">
+      {% if menus|length > 1 %}
+      <div class="btn submit menubtn add icon">{{ "New Node"|t }}</div>
+      <div class="menu">
+        <ul>
+          {% for menu in menus %}
+          <li><a href="{{ url('menus/'~menu.handle~'/new') }}">{{ menu.name|t }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% else %}
+      <a class="btn submit add icon" href="{{ url('menus/'~menus[0].handle~'/new') }}">{{ "New Node"|t }}</a>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {{ parent() }}
+
+
+{% endblock %}
