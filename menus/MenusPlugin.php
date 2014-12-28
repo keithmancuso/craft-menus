@@ -72,4 +72,12 @@ class MenusPlugin extends BasePlugin
     );
   }
 
+  public function init()
+  {
+    craft()->structures->onMoveElement = function(Event $event) {
+      $element = $event->params['element'];
+      craft()->templateCache->deleteCachesByElementId($element['id']);
+    };
+  }
+
 }

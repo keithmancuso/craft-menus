@@ -79,10 +79,11 @@ class Menus_NodesService extends BaseApplicationComponent
       try
       {
         // Fire an 'onBeforeSaveEvent' node
-        $this->onBeforeSaveEvent(new Event($this, array(
+        $this->onSaveNode(new Event($this, array(
         'node'      => $node,
         'isNewNode' => $isNewNode
         )));
+
 
         if (craft()->elements->saveElement($node))
         {
@@ -112,7 +113,7 @@ class Menus_NodesService extends BaseApplicationComponent
           craft()->elements->updateDescendantSlugsAndUris($node);
 
           // Fire an 'onSaveEvent' node
-          $this->onSaveEvent(new Event($this, array(
+          $this->onSaveNode(new Event($this, array(
           'node'      => $node,
           'isNewNode' => $isNewNode
           )));
@@ -136,6 +137,8 @@ class Menus_NodesService extends BaseApplicationComponent
       }
     }
 
+
+
     return false;
   }
 
@@ -146,9 +149,9 @@ class Menus_NodesService extends BaseApplicationComponent
   *
   * @param Event $node
   */
-  public function onBeforeSaveEvent(Event $node)
+  public function onBeforeSaveNode(Event $node)
   {
-    $this->raiseEvent('onBeforeSaveEvent', $node);
+    $this->raiseEvent('onBeforeSaveNode', $node);
   }
 
   /**
@@ -156,9 +159,9 @@ class Menus_NodesService extends BaseApplicationComponent
   *
   * @param Event $node
   */
-  public function onSaveEvent(Event $node)
+  public function onSaveNode(Event $node)
   {
-    $this->raiseEvent('onSaveEvent', $node);
+    $this->raiseEvent('onSaveNode', $node);
   }
 
   /**

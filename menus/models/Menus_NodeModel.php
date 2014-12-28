@@ -71,6 +71,7 @@ class Menus_NodeModel extends BaseElementModel
   public function getUrl()
   {
 
+    //return '/test';
     if ($this->linkedEntryId)
     {
       $entry = craft()->entries->getEntryById($this->linkedEntryId);
@@ -95,7 +96,7 @@ class Menus_NodeModel extends BaseElementModel
   */
   public function getLink()
   {
-
+    //return '/test';
     if ($this->linkedEntryId)
     {
       $entry = craft()->entries->getEntryById($this->linkedEntryId);
@@ -122,32 +123,22 @@ class Menus_NodeModel extends BaseElementModel
   public function getActive()
   {
 
+
     $currentUrl = craft()->request->getUrl();
+    $linkUrl = $this->getUrl();
 
-    $children = $this->getChildren();
-
-    if (count($children) > 0  &&  $this->getUrl() == null ) {
-
-      foreach ($children as &$child) {
-        if ($child->getLink() == $currentUrl) {
-          return true;
-        }
-      }
-      return false;
-
-    } else {
-      if ($currentUrl == $this->getLink() )
+    if ($linkUrl != null )
+    {
+      if (strpos($currentUrl,$this->getLink()) !== false)
       {
+
         return true;
+
       }
-      else
-      {
-        return false;
-      }
+
     }
 
-
-
+    return false;
 
 
   }
