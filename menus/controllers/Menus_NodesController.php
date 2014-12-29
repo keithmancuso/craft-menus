@@ -165,6 +165,9 @@ class Menus_NodesController extends BaseController
     // Set the node attributes, defaulting to the existing values for whatever is missing from the post data
     $node->menuId = craft()->request->getPost('menuId', $node->menuId);
     $linkedEntry  = craft()->request->getPost('linkedEntryId' );
+    $node->enabled       = (bool) craft()->request->getPost('enabled', $node->enabled);
+
+
 
     if (is_array($linkedEntry)) {
       $node->linkedEntryId = isset($linkedEntry[0]) ? $linkedEntry[0] : null;

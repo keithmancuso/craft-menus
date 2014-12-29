@@ -19,7 +19,7 @@ class Menus_NodeModel extends BaseElementModel
       'linkedEntryId'  => AttributeType::Number,
       'customUrl'  => AttributeType::String,
       // Just used for saving categories
-      'newParentId'      => AttributeType::Number
+      'newParentId'      => AttributeType::Number,
     ));
   }
 
