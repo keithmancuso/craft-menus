@@ -145,9 +145,11 @@ class Menus_NodeElementType extends BaseElementType
     public function modifyElementsQuery(DbCommand $query, ElementCriteriaModel $criteria)
     {
       $query
-      ->addSelect('nodes.menuId, nodes.linkedEntryId, nodes.customUrl')
+      ->addSelect('nodes.menuId, nodes.linkedEntryId, nodes.customUrl, i18n.uri linkedEntryUrl')
       ->join('menus_nodes nodes', 'nodes.id = elements.id')
       ->join('menus menus', 'menus.id = nodes.menuId')
+      ->leftJoin('elements_i18n i18n', 'i18n.elementId = nodes.linkedEntryId')
+
       ->leftJoin('structures structures', 'structures.id = menus.structureId')
       ->leftJoin('structureelements structureelements', array('and', 'structureelements.structureId = structures.id', 'structureelements.elementId = nodes.id'));
 

@@ -18,8 +18,10 @@ class Menus_NodeModel extends BaseElementModel
       'menuId' => AttributeType::Number,
       'linkedEntryId'  => AttributeType::Number,
       'customUrl'  => AttributeType::String,
+      'linkedEntryUrl'  => AttributeType::String,
+
       // Just used for saving categories
-      'newParentId'      => AttributeType::Number,
+      'newParentId'      => AttributeType::Number
     ));
   }
 
@@ -74,13 +76,15 @@ class Menus_NodeModel extends BaseElementModel
     //return '/test';
     if ($this->linkedEntryId)
     {
-      $entry = craft()->entries->getEntryById($this->linkedEntryId);
+      // $entry = craft()->entries->getEntryById($this->linkedEntryId);
+      //
+      // if ($entry != null) {
+      //   return $entry->url;
+      // } else {
+      //   return null;
+      // }
 
-      if ($entry != null) {
-        return $entry->url;
-      } else {
-        return null;
-      }
+      return '/'.$this->linkedEntryUrl;
     }
     else
     {
@@ -99,14 +103,14 @@ class Menus_NodeModel extends BaseElementModel
     //return '/test';
     if ($this->linkedEntryId)
     {
-      $entry = craft()->entries->getEntryById($this->linkedEntryId);
-
-      if ($entry != null) {
-        return '/'.$entry->uri;
-      } else {
-        return null;
-      }
-
+      // $entry = craft()->entries->getEntryById($this->linkedEntryId);
+      //
+      // if ($entry != null) {
+      //   return '/'.$entry->uri;
+      // } else {
+      //   return null;
+      // }
+      return '/'.$this->linkedEntryUrl;
     }
     else
     {
