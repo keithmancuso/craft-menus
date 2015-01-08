@@ -60,7 +60,7 @@ class Menus_NodesController extends BaseController
     if (!$variables['node']->id)
     {
       $variables['title'] = Craft::t('Create a new node');
-      $variables['linkedElements'] = [];
+      $variables['linkedElements'] = array();
     }
     else
     {

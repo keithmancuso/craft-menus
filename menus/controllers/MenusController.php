@@ -77,6 +77,8 @@ class MenusController extends BaseController
     $menu->handle     = craft()->request->getPost('handle');
     $menu->type       = craft()->request->getPost('type');
     $menu->maxLevels     = craft()->request->getPost('maxLevels');
+    $menu->structureId     = craft()->request->getPost('structureId');
+
 
     // Save it
     if (craft()->menus->saveMenu($menu))

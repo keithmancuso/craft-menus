@@ -180,6 +180,16 @@ class MenusService extends BaseApplicationComponent
           $menuRecord->structureId = $structure->id;
           $menu->structureId = $structure->id;
         }
+        else
+        {
+
+          $structure =  craft()->structures->getStructureById($menu->structureId);
+          $structure->maxLevels = $menu->maxLevels;
+
+
+          craft()->structures->saveStructure($structure);
+
+        }
 
 
         // Save it!
