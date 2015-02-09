@@ -6,6 +6,8 @@
 
 {% block content %}
 <form method="post" accept-charset="UTF-8" data-saveshortcut="1">
+  {{ getCsrfInput() }}
+
   <input type="hidden" name="action" value="menus/saveMenu">
   <input type="hidden" name="redirect" value="settings/plugins/menus">
   {% if menu.id %}<input type="hidden" name="menuId" value="{{ menu.id }}">{% endif %}
