@@ -69,6 +69,7 @@ class Menus_NodesService extends BaseApplicationComponent
     $nodeRecord->menuId = $node->menuId;
     $nodeRecord->linkedEntryId  = $node->linkedEntryId;
     $nodeRecord->customUrl    = $node->customUrl;
+    $nodeRecord->newWindow    = $node->newWindow;
 
     $nodeRecord->validate();
     $node->addErrors($nodeRecord->getErrors());

@@ -175,6 +175,7 @@ class Menus_NodesController extends BaseController
 
     $node->customUrl      = craft()->request->getPost('customUrl', $node->customUrl );
     $node->getContent()->title = craft()->request->getPost('title', $node->title);
+    $node->newWindow = craft()->request->getPost('newWindow');
 
     // Parent
     $parentId = craft()->request->getPost('parentId');

@@ -22,7 +22,8 @@ class Menus_NodeRecord extends BaseRecord
   {
     return array(
       'linkedEntryId' => array(AttributeType::Number, 'required' => false),
-      'customUrl'   => array(AttributeType::String, 'required' => false)
+      'customUrl'   => array(AttributeType::String, 'required' => false),
+      'newWindow'   => array(AttributeType::Bool, 'required' => false)
     );
   }
 
@@ -35,7 +36,6 @@ class Menus_NodeRecord extends BaseRecord
       'element'  => array(static::BELONGS_TO, 'ElementRecord', 'id', 'required' => true, 'onDelete' => static::CASCADE),
       'menu' => array(static::BELONGS_TO, 'Menus_MenuRecord', 'required' => true, 'onDelete' => static::CASCADE),
       'linkedEntry' => array(static::HAS_ONE, 'EntryRecord', 'linkedEntryId','required' => false),
-
     );
   }
 }
