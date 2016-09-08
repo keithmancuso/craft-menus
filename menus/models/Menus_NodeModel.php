@@ -120,6 +120,29 @@ class Menus_NodeModel extends BaseElementModel
   }
 
   /**
+  * Returns the entry of a node
+  * {{ node.entry.fieldHandle }}
+  *
+  * @return String|null
+  */
+  public function getEntry()
+  {
+    if ($this->linkedEntryId)
+    {
+      $entry = craft()->entries->getEntryById($this->linkedEntryId);
+      if ($entry != null) {
+        return $entry;
+      } else {
+        return null;
+      }
+    }
+    else
+    {
+      return null;
+    }
+  }
+
+  /**
   * Returns the nodes active state
   *
   * @return String|null
