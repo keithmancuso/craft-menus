@@ -1,18 +1,5 @@
 {% import "_includes/forms" as forms %}
 
-{% set hideSave %}
-.buttons {
-  display:none;
-}
-
-#settings-newmenucontainer.buttons {
-  display:block;
-}
-{% endset %}
-
-{% includeCss hideSave %}
-
-
 <div id="nomenus"{% if menus %} class="hidden"{% endif %}>
   <p>{{ "No menus exist yet."|t }}</p>
 </div>
