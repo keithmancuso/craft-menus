@@ -61,6 +61,7 @@ Each node has the following properties
 * node.url (full url)
 * node.active (returns true if the node or a childnode matches the current url)
 * node.children (any child nodes)
+* node.entry (returns entire node's entry and all attached fields)
 
 
 
