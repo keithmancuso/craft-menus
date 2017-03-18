@@ -1,7 +1,7 @@
 Familiar Menus
 =======
 
-For anyone looking for a much more feature rich implemenatation of the ideas I started here please (checkout the Navee plugin)[https://github.com/fromtheoutfit/navee]. I shared a lot of thsi code when them while they were developing it and they were able to add all of the features I just never had the time to built out.
+For anyone looking for a much more feature rich implemenatation of the ideas I started here please [checkout the Navee plugin](https://github.com/fromtheoutfit/navee). I shared a lot of thsi code when them while they were developing it and they were able to add all of the features I just never had the time to built out.
 
 If you understand and love familiar menus, you'll love navee even more!
 
