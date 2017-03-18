@@ -1,6 +1,13 @@
 Familiar Menus
 =======
 
+For anyone looking for a much more feature rich implemenatation of the ideas I started here please "checkout the Navee plugin"[https://github.com/fromtheoutfit/navee]. I shared a lot of thsi code when them while they were developing it and they were able to add all of the features I just never had the time to built out.
+
+Check it out, you wont be disappointed!
+
+
+=====
+
 A simple but powerful menus plugin for Craft CMS build with a custom element type.
 
 You add menus in the plugin settings and then you can add "nodes" to that menu from the "Menus" tab.  A node can link to any entry in the system (including singles) or use a custom url and title
