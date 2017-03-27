@@ -19,6 +19,7 @@ class Menus_NodeModel extends BaseElementModel
       'linkedEntryId'  => AttributeType::Number,
       'customUrl'  => AttributeType::String,
       'linkedEntryUrl'  => AttributeType::String,
+      'newWindow'  => AttributeType::Bool,
 
       // Just used for saving categories
       'newParentId'      => AttributeType::Number

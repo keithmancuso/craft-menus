@@ -48,6 +48,17 @@
           autofocus: true,
           required: false
         }) }}
+
+        {{ forms.checkBox({
+          label: "Open in New Window"|t,
+          id: 'newWindow',
+          name: 'newWindow',
+          checked: node.newWindow,
+          errors: node.getErrors('newWindow'),
+          first: true,
+          autofocus: true,
+          required: false
+        }) }}
       </div>
     </div> <!--/item-->
 

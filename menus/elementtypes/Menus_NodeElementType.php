@@ -98,7 +98,8 @@ class Menus_NodeElementType extends BaseElementType
       return array(
       'title'     => Craft::t('Title'),
       'link'     => Craft::t('Link'),
-      //'url'     => Craft::t('Url'),
+      'newWindow' => Craft::t('New Window'),
+    //   'url'     => Craft::t('Url'),
       );
     }
 
@@ -113,7 +114,13 @@ class Menus_NodeElementType extends BaseElementType
     {
       switch ($attribute)
       {
+        case 'newWindow':
+            if($element->newWindow == 1) {
+                return 'Yes';
+            }
 
+            return 'No';
+        break;
         default:
         {
           return parent::getTableAttributeHtml($element, $attribute);
@@ -145,7 +152,7 @@ class Menus_NodeElementType extends BaseElementType
     public function modifyElementsQuery(DbCommand $query, ElementCriteriaModel $criteria)
     {
       $query
-      ->addSelect('nodes.menuId, nodes.linkedEntryId, nodes.customUrl, i18n.uri linkedEntryUrl')
+      ->addSelect('nodes.menuId, nodes.linkedEntryId, nodes.customUrl, nodes.newWindow, i18n.uri linkedEntryUrl')
       ->join('menus_nodes nodes', 'nodes.id = elements.id')
       ->join('menus menus', 'menus.id = nodes.menuId')
       ->leftJoin('elements_i18n i18n', 'i18n.elementId = nodes.linkedEntryId')
