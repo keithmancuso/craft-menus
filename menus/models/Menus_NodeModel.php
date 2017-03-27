@@ -131,18 +131,16 @@ class Menus_NodeModel extends BaseElementModel
     $currentUrl = craft()->request->getUrl();
     $linkUrl = $this->getUrl();
 
-    if ($linkUrl != null )
-    {
-      if (strpos($currentUrl,$this->getLink()) !== false)
-      {
-
-        return true;
-
+    if ($currentUrl == $linkUrl){ //This just matches the home page
+      return true;
+    } else{
+      //This will match anything else, including custom index single pages
+      if(strpos($currentUrl, $linkUrl) !== false && $linkUrl !== '/'){
+          return true;
       }
-
     }
-
     return false;
+  }
 
 
   }
